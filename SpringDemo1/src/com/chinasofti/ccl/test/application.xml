@@ -11,11 +11,17 @@
 
 	<context:component-scan base-package="com.chinasofti.ccl.entity"></context:component-scan>
 
+	
+
+	<!-- 前置通知组件 -->
+	<bean id="testbefore" class="com.chinasofti.ccl.aoptest.AopBefore"></bean>
 	<aop:config>
-		<!-- 配置切面 -->
+		<!-- 配置目标组件 -->
 		<aop:pointcut id="testaop"
 			expression="execution(* com.chinasofti.ccl.entity.People.liugou(*))"></aop:pointcut>
-		<aop:aspect>
+		<!-- -->
+		<aop:aspect ref="testbefore">
+			<aop:before method="beforetest" pointcut-ref="testaop" />
 		</aop:aspect>
 	</aop:config>
 
