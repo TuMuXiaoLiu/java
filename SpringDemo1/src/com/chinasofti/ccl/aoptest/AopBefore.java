@@ -12,7 +12,7 @@ import org.aspectj.lang.JoinPoint;
  */
 public class AopBefore {
 
-	public void beforetest(JoinPoint joinPoint) {
+	public void before(JoinPoint joinPoint) {
 		System.out.println(11);
 		System.out.println(joinPoint.getTarget().getClass().getName());
 	}

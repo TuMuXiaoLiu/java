@@ -1,6 +1,7 @@
 package com.chinasofti.ccl.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Component;
  * @parameter
  * @PS
  */
-@Component()
+@Component
 public class People {
+	@Value(value = "晓明")
 	private String name;
 	@Autowired
 	private Dog dog;
