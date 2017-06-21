@@ -1,4 +1,4 @@
-package com.chinasofti.ccl.test;
+ package com.chinasofti.ccl.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

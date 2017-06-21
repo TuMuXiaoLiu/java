@@ -11,21 +11,33 @@
 
 	<context:component-scan base-package="com.chinasofti.ccl.entity"></context:component-scan>
 
-
+	<!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
 	<!-- 前置通知组件 -->
 	<bean id="testbefore" class="com.chinasofti.ccl.aoptest.AopBefore"></bean>
 	<!-- 后置通知组件 -->
 	<bean id="testafter" class="com.chinasofti.ccl.aoptest.AopAfter"></bean>
+	<!-- 异常通知组件 -->
+	<bean id="testthrowable" class="com.chinasofti.ccl.aoptest.AopThrowable"></bean>
+	<!-- 环绕通知组件 -->
+	<bean id="testaround" class="com.chinasofti.ccl.aoptest.AopAround"></bean>
 	<aop:config>
-		<!-- 配置目标组件 -->
+		<!-- 配置切入点 -->
 		<aop:pointcut id="testaop"
-			expression="execution(* com.chinasofti.ccl.entity.People.*.*(*))"></aop:pointcut>
-		<!-- <aop:aspect ref="testbefore"> <aop:before method="before" pointcut-ref="testaop" 
-			/> </aop:aspect> -->
-
-		<aop:aspect ref="testafter">
-			<aop:after method="after" pointcut-ref="testaop" />
+			expression="execution(* com.chinasofti.ccl.entity.People.*(..))"></aop:pointcut>
+		<!-- 配置切面 -->
+		<aop:aspect ref="testbefore">
+			<aop:before method="before" pointcut-ref="testaop" />
 		</aop:aspect>
+		<aop:aspect ref="testafter">
+			<aop:after-returning method="after" pointcut-ref="testaop" />
+		</aop:aspect>
+		<!-- <aop:aspect ref="testthrowable"> <aop:after-throwing method="throwable" 
+			pointcut-ref="testaop" throwing="e" /> </aop:aspect> -->
+
+		<aop:aspect ref="testaround">
+			<aop:around method="around" pointcut-ref="testaop" />
+		</aop:aspect>
+
 	</aop:config>
 
 
